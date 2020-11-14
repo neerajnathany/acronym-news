@@ -1,0 +1,17 @@
+%text-button{
+    text-decoration: none;
+    font-family: inherit;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: 300;
+    background: none;
+    border: none;
+    color: $light-white;
+}
+
+%box-tag{
+    font-size: 0.8em;
+    position: absolute;
+    padding: $std-padding*0.4 $std-padding*0.65;
+    border-radius: 0.6*$std-padding;
+}
