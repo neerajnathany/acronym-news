@@ -4,8 +4,8 @@ class ItemView extends Component {
     render() {
         var item = this.props.item;
         return (
-            item ? <div className={"pop-box " + this.props.class} onClick={this.props.clearItem}>
-                <div className="pop-item">
+            item ? <div className={"pop-layer " + this.props.class} onClick={this.props.clearItem}>
+                <div className="pop-modal">
                     <h1 className="pop-item-title">{item.webTitle}</h1>
                     <div className="pop-item-meta">
                         <span>{item.sectionName}</span>•

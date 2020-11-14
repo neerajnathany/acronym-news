@@ -411,23 +411,25 @@ textarea {
   margin-right: 6px;
   vertical-align: bottom; }
 
-.pop-box {
+.pop-layer {
   position: fixed;
-  background-color: #fff;
+  background: rgba(0, 0, 0, 0.75);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  transition: all 0.08s ease-in-out; }
+
+.pop-modal {
+  background-color: #ddd;
   color: #1f1f1f;
   width: 50%;
-  max-height: 100%;
+  margin: 3% auto;
+  max-height: 90%;
   overflow: scroll;
-  top: 5%;
-  bottom: 5%;
-  left: 50%;
-  z-index: 2;
   border-radius: 10px 10px 0 0;
-  padding: 2.5% 3%;
-  box-shadow: 2px 4px 18px 0 rgba(0, 0, 0, 0.6);
-  cursor: default;
-  transition: all 0.08s ease-in-out;
-  transform: translate(-50%, 0); }
+  padding: 2.5% 3%; }
 
 .pop-item-title {
   margin-bottom: 2%;
@@ -448,30 +450,42 @@ textarea {
 .pop-item-detail {
   text-align: justify;
   font-size: 1.1em;
-  line-height: 1.35em; }
+  line-height: 1.4em; }
   .pop-item-detail p {
     margin-bottom: 1%; }
-  .pop-item-detail time {
+  .pop-item-detail time, .pop-item-detail em {
     font-weight: 700; }
   .pop-item-detail a {
     text-decoration: none;
     color: #2190ff; }
+  .pop-item-detail blockquote {
+    margin: 3% 0;
+    padding-left: 3%;
+    border-left: 3px solid #a20000; }
+    .pop-item-detail blockquote em {
+      font-weight: initial; }
+      .pop-item-detail blockquote em br {
+        display: none; }
+  .pop-item-detail h2.block-title {
+    font-weight: 700;
+    margin-bottom: 1%; }
   .pop-item-detail figure {
     width: 100%;
     margin: 3% 0; }
+    .pop-item-detail figure iframe {
+      width: 100%; }
     .pop-item-detail figure img {
       width: 100%;
       height: auto; }
     .pop-item-detail figure figcaption {
-      font-size: 0.8em;
-      font-style: italic;
-      color: #383838;
+      font-size: 0.75em;
+      color: #666;
       text-align: left;
-      line-height: 1.2em;
+      line-height: 1.25em;
       margin-top: 1%; }
 
 @media screen and (min-width: 700px) {
-  .pop-box {
+  .pop-modal {
     border-radius: 12px; } }
 
 .home {

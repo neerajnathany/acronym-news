@@ -50,23 +50,25 @@
 }
 
 .pop{
-    &-box{
+    &-layer{
         position: fixed;
-        background-color: $white;
+        background: rgba($black,0.75);
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 2;
+        transition: all 0.08s ease-in-out;
+    }
+    &-modal{
+        background-color: $faint-white;
         color: $dark;
         width: 50%;
-        max-height: 100%;
+        margin: 3% auto;
+        max-height: 90%;
         overflow: scroll;
-        top: 5%;
-        bottom: 5%;
-        left: 50%;
-        z-index: 2;
         border-radius: 1.25*$std-padding 1.25*$std-padding 0 0;
         padding: 2.5% 3%;
-        box-shadow: 2px 4px 18px 0 rgba(0,0,0,0.6);
-        cursor: default;
-        transition: all 0.08s ease-in-out;
-        transform: translate(-50%,0);
     }
     &-item{
         &-title{
@@ -90,37 +92,54 @@
         &-detail{
             text-align: justify;
             font-size: 1.1em;
-            line-height: 1.35em;
+            line-height: 1.4em;
             p{
                 margin-bottom: 1%;
             }
-            time{
+            time, em{
                 font-weight: 700;
             }
             a{
                 text-decoration: none;
                 color: $cobalt;
             }
+            blockquote{
+                margin: 3% 0;
+                padding-left: 3%;
+                border-left: 3px solid $red;
+                em{
+                    font-weight: initial;
+                    br{
+                        display: none;   
+                    }
+                }
+            }
+            h2.block-title{
+                font-weight: 700;
+                margin-bottom: 1%;
+            }
             figure{
                 width: 100%;
                 margin: 3% 0;
+                iframe{
+                    width: 100%;
+                }
                 img{
                     width: 100%;
                     height: auto;
                 }
                 figcaption{
-                    font-size: 0.8em;
-                    font-style: italic;
-                    color: $grey;
+                    font-size: 0.75em;
+                    color: $light-grey;
                     text-align: left;
-                    line-height: 1.2em;
+                    line-height: 1.25em;
                     margin-top: 1%;
                 }
             }
         }
     }
     @media screen and (min-width: 700px) {
-        &-box{
+        &-modal{
             border-radius: 1.5*$std-padding;
         }
     }
