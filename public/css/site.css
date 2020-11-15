@@ -111,7 +111,7 @@ html {
  * Address `outline` inconsistency between Chrome and other browsers.
  */
 a:focus {
-  outline: thin dotted; }
+  outline: none; }
 
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
@@ -548,7 +548,7 @@ textarea {
         border-radius: 20px; } }
 
 body {
-  font-family: 'Circular Std', 'SF Pro Display';
+  font-family: 'Circular Std';
   background-color: #1f1f1f;
   color: #ffffffbb;
   font-weight: 300; }
@@ -641,7 +641,8 @@ body {
     margin: 2.5% 2.5% 0 0; }
     .panel-button.true {
       background-color: #000;
-      color: #2190ff; }
+      color: #ff5656;
+      cursor: default; }
     .panel-button.false:hover {
       background-color: #ffffff66; }
     .panel-button span {

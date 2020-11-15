@@ -6,7 +6,7 @@
 @import "components";
 
 body{
-	font-family: 'Circular Std', 'SF Pro Display';
+	font-family: 'Circular Std';
 	background-color: $dark;
 	color: $light-white;
 	font-weight: 300;
@@ -116,7 +116,8 @@ body{
 		margin: 2.5% 2.5% 0 0;
 		&.true{
 			background-color: $black;
-			color: $cobalt;
+			color: lighten($red,35%);
+			cursor: default;
 		}
 		&.false:hover{
 			background-color: $lighter-white;
