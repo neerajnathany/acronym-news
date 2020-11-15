@@ -3,25 +3,19 @@ import Link from './Link';
 
 class ArticleView extends Component {
     render() {
-        var item = this.props.item;
+        var article = this.props.article;
         return (
-            item ? <div className={"pop-layer " + this.props.class} onClick={this.props.clearItem}>
-                <div className="pop-modal">
-                    <Link href={"/"+item.sectionId} className="pop-item-section">{item.sectionName}</Link>
-                    <h1 className="pop-item-title">{item.webTitle}</h1>
-                    <div className="pop-item-meta">                        
-                        <span>{new Date().toUTCString(item.webPublicationDate)}</span>•
-                        <span>{Math.round((item.fields.wordcount / 10)*0.0769)} mins</span>
-                    </div>
-                    <div className="pop-item-detail" dangerouslySetInnerHTML={{__html: item.fields.body}} />
+            <div className="article">
+                <Link href={"/"+article.sectionId} className="article-section">{article.sectionName}</Link>
+                <h1 className="article-title">{article.webTitle}</h1>
+                <div className="article-meta">                        
+                    <span>{article.webPublicationDate}</span>•
+                    <span>{Math.round((article.fields.wordcount / 10)*0.0769)} mins</span>
                 </div>
-            </div> : null
+                {/* <div className="article-detail" dangerouslySetInnerHTML={{__html: article.fields.body}} /> */}
+            </div>
         )
     }
-}
-
-ArticleView.defaultProps = {
-	class : ''
 }
  
 export default ArticleView;

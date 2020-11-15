@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import Notification from './components/Notification';
-//import PageView from './components/PageView';
 import NewsView from './components/NewsView';
+import ArticleModal from './components/ArticleModal';
 import ArticleView from './components/ArticleView';
 import Link from './components/Link';
 import {categories,KEY,PARAMS} from './constants';
 import axios from 'axios';
 
 class App extends Component {
-    state = { selectedItem: null, sections: [], articles: [], title: '', location: window.location.pathname }
+    state = { popItem: null, sections: [], articles: [], article: {}, title: '', location: window.location.pathname }
 
     componentDidMount(){
         this.getSections();
@@ -42,22 +42,30 @@ class App extends Component {
         }).get(path, {
             params:PARAMS
         });
-        this.setState({articles:response.data.response.results, title:response.data.response.section ? response.data.response.section.webTitle : 'Headlines'});
+        if (response.data.response.results){
+            this.setState({articles: response.data.response.results, title: response.data.response.section ? response.data.response.section.webTitle : 'Headlines', article:{}});            
+        }
+        else if (response.data.response.content){
+            this.setState({article:response.data.response.content, articles:[], title: ''});
+        }
     }
     
     showArticle = (item) => {
-        this.setState({selectedItem:item});
+        this.setState({popItem:item});
     }
     
     clearArticle = () => {
-        this.setState({selectedItem:null});
+        this.setState({popItem:null});
     }
     
     getView = () => {        
         this.getNews();
-        return (                        
-            <NewsView key={this.state.title} showItem={this.showArticle} articles={this.state.articles} title={this.state.title}/>                                 
-        )                
+        if (this.state.articles.length){
+            return <NewsView key={this.state.title} showItem={this.showArticle} articles={this.state.articles} title={this.state.title}/>                                 
+        }
+        else if (Object.keys(this.state.article).length){
+            return <ArticleView article={this.state.article}/>
+        }                    
     }
 
     render() { 
@@ -87,7 +95,7 @@ class App extends Component {
                         </div>
                     </aside>
                     {this.getView()}
-                    {this.state.selectedItem ? <ArticleView item={this.state.selectedItem} clearItem={this.clearArticle}/> : <ArticleView class="inactive"/>}
+                    {this.state.popItem ? <ArticleModal article={this.state.popItem} clearItem={this.clearArticle}/> : <ArticleModal class="inactive"/>}
                 </main>
             </div>
          )

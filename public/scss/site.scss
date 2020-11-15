@@ -6,7 +6,7 @@
 @import "components";
 
 body{
-	font-family: 'Circular Std';
+	font-family: 'Circular Std', sans-serif;
 	background-color: $dark;
 	color: $light-white;
 	font-weight: 300;
@@ -147,6 +147,8 @@ body{
 		width: 24.75%;
 		vertical-align: top;
 		margin: 0 2.75%;
+		position: sticky;
+		top: 6*$std-padding;
 		&-button{
 			margin-right: 1.25*$std-padding;
 			margin-top: 1.25*$std-padding;

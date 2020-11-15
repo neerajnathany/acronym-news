@@ -18,7 +18,6 @@ class NewsView extends Component {
                                 article={each}
                                 key={index}
                                 showItem = {this.props.showItem}
-                                //view = {this.props.view}
                             />
                         )
                     })) : <h5 className="group-title">Loading...</h5>}      
