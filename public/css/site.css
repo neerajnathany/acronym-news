@@ -437,7 +437,10 @@ textarea {
   display: inline-block;
   margin-bottom: 1.5%;
   background-color: #a20000;
-  color: #ddd; }
+  color: #ddd;
+  text-decoration: none; }
+  .pop-item-section:hover {
+    background-color: #0883ff; }
 
 .pop-item-title {
   margin-bottom: 2%;

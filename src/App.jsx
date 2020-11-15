@@ -1,39 +1,16 @@
 import React, { Component } from 'react';
 import Notification from './components/Notification';
-import NewsView from './components/NewsView';
+import PageView from './components/PageView';
 import ArticleView from './components/ArticleView';
 import Link from './components/Link';
-import categories from './constants';
+import {categories,KEY} from './constants';
 import axios from 'axios';
-//import Link from 'react';
-
-const KEY = '829c4e68-c5a7-43fa-8a81-ed2e567dc96a'
-const PARAMS = {"api-key": KEY, "page-size":30, "show-fields": "body,thumbnail,wordcount"}
 
 class App extends Component {
-    state = { articles:[], title:'', selectedItem: null, location: window.location.pathname, sections:[] }
+    state = { selectedItem: null, sections:[] }
 
     componentDidMount(){
-        const onLocationChange = () => {
-            this.setState({location: window.location.pathname});
-        };
-        window.addEventListener('popstate', onLocationChange);
-        this.getNews();
         this.getSections();
-        return () => {
-            window.removeEventListener('popstate', onLocationChange);
-        };
-    }
-
-    getNews = async () => {
-        var path = this.state.location === '/' ? '/search' : this.state.location;
-        const response = await axios.create({
-            baseURL: 'https://content.guardianapis.com',
-        }).get(path, {
-            params:PARAMS
-        });
-        this.setState({articles:response.data.response.results, title:response.data.response.section ? response.data.response.section.webTitle : 'Headlines'});
-        //this.getSections();
     }
 
     getSections = async () => {
@@ -50,17 +27,27 @@ class App extends Component {
         })});
     }
 
+    showArticle = (item) => {
+        this.setState({selectedItem:item});
+    }
+    
+    clearArticle = () => {
+        this.setState({selectedItem:null});
+    }
+    
     getView = () => {
-        this.getNews();
         return (
             <main className="main">
                 <aside className="panel">
                     <div className="panel-box">
                         <div className="panel-box-group">
-                            <h6 className="panel-box-title">Popular categories</h6>
+                            <h6 className="panel-box-title">Categories</h6>
+                            <Link className={"panel-button "+(window.location.pathname === '/' ? "true" : "false")} href="/">
+                                <span>All headlines</span>
+                            </Link>
                             {this.state.sections.map(each => {
                                 return (
-                                    <Link className="panel-button" href={"/"+each.id}>
+                                    <Link className={"panel-button "+(window.location.pathname === '/'+each.id ? "true" : "false")} href={"/"+each.id}>
                                         <span>{each.webTitle}</span>
                                     </Link>
                                 )
@@ -68,31 +55,10 @@ class App extends Component {
                         </div>
                     </div>
                 </aside>
-                <NewsView key={this.state.title} showItem={this.showArticle} articles={this.state.articles} title={this.state.title}/>    
+                <PageView showArticle={this.showArticle}/>                
                 {this.state.selectedItem ? <ArticleView item={this.state.selectedItem} clearItem={this.clearArticle}/> : <ArticleView class="inactive"/>}
             </main>
         )                
-    }
-
-    // showSection = async (e) => {
-    //     const response = await axios.create({
-    //         baseURL: 'https://content.guardianapis.com',
-    //     }).get('/'+e.currentTarget.value,{
-    //         params:{
-    //             "api-key": KEY,
-    //             "page-size":30,
-    //             "show-fields": "body,thumbnail,wordcount",
-    //         }
-    //     });
-    //     this.setState({articles:response.data.response.results, title:response.data.response.section.webTitle});
-    // }
-
-    showArticle = (item) => {
-        this.setState({selectedItem:item});
-    }
-
-    clearArticle = () => {
-        this.setState({selectedItem:null});
     }
 
     render() { 

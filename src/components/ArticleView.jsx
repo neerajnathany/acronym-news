@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from './Link';
 
 class ArticleView extends Component {
     render() {
@@ -6,7 +7,7 @@ class ArticleView extends Component {
         return (
             item ? <div className={"pop-layer " + this.props.class} onClick={this.props.clearItem}>
                 <div className="pop-modal">
-                    <span className="pop-item-section">{item.sectionName}</span>
+                    <Link href={"/"+item.sectionId} className="pop-item-section">{item.sectionName}</Link>
                     <h1 className="pop-item-title">{item.webTitle}</h1>
                     <div className="pop-item-meta">                        
                         <span>{new Date().toUTCString(item.webPublicationDate)}</span>•

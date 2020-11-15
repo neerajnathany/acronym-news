@@ -79,7 +79,10 @@
             margin-bottom: 1.5%;
             background-color: $red;
             color: $faint-white;
-
+            text-decoration: none;
+            &:hover{
+                background-color: darken($cobalt,5%);
+            }
         }
         &-title{
             margin-bottom: 2%;
