@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ItemView extends Component {
+class ArticleView extends Component {
     render() {
         var item = this.props.item;
         return (
@@ -9,7 +9,7 @@ class ItemView extends Component {
                     <span className="pop-item-section">{item.sectionName}</span>
                     <h1 className="pop-item-title">{item.webTitle}</h1>
                     <div className="pop-item-meta">                        
-                        <span>{new Date().toDateString(item.webPublicationDate)}</span>•
+                        <span>{new Date().toUTCString(item.webPublicationDate)}</span>•
                         <span>{Math.round((item.fields.wordcount / 10)*0.0769)} mins</span>
                     </div>
                     <div className="pop-item-detail" dangerouslySetInnerHTML={{__html: item.fields.body}} />
@@ -19,8 +19,8 @@ class ItemView extends Component {
     }
 }
 
-ItemView.defaultProps = {
+ArticleView.defaultProps = {
 	class : ''
 }
  
-export default ItemView;
+export default ArticleView;
