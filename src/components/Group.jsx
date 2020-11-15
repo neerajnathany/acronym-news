@@ -12,7 +12,7 @@ class Group extends Component {
 				</div>
 				<div className="item-detail">
 					<h5 className="item-title">{article.webTitle}</h5>
-					<span className="item-date">{article.webPublicationDate}</span>
+					<span className="item-date">{new Date().toUTCString(article.webPublicationDate)}</span>
 				</div>
 			</div>
 		)

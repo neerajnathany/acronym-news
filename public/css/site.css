@@ -364,7 +364,7 @@ textarea {
   border: none;
   color: #ffffffbb; }
 
-.item-section {
+.pop-item-section, .item-section {
   font-size: 0.8em;
   position: absolute;
   padding: 3.2px 5.2px;
@@ -428,8 +428,16 @@ textarea {
   margin: 3% auto;
   max-height: 90%;
   overflow: scroll;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px;
   padding: 2.5% 3%; }
+
+.pop-item-section {
+  font-size: 0.9em;
+  position: static;
+  display: inline-block;
+  margin-bottom: 1.5%;
+  background-color: #a20000;
+  color: #ddd; }
 
 .pop-item-title {
   margin-bottom: 2%;
@@ -457,7 +465,7 @@ textarea {
     font-weight: 700; }
   .pop-item-detail a {
     text-decoration: none;
-    color: #2190ff; }
+    color: #0883ff; }
   .pop-item-detail blockquote {
     margin: 3% 0;
     padding-left: 3%;
@@ -476,7 +484,8 @@ textarea {
       width: 100%; }
     .pop-item-detail figure img {
       width: 100%;
-      height: auto; }
+      height: auto;
+      border-radius: 8px; }
     .pop-item-detail figure figcaption {
       font-size: 0.75em;
       color: #666;
@@ -683,8 +692,7 @@ body {
   overflow: hidden;
   cursor: pointer; }
   .item.small {
-    width: 30%;
-    height: 3.8em; }
+    width: 30%; }
   .item.big {
     width: 47.5%; }
   .item-tile {
@@ -695,7 +703,9 @@ body {
     .item-tile img {
       width: 100%;
       display: block;
-      height: auto; }
+      height: auto;
+      filter: none;
+      transition: all 0.15s ease-in-out; }
   .item-form {
     margin-bottom: 1.6px;
     display: block; }
@@ -716,8 +726,9 @@ body {
     margin-top: 3%;
     color: #ffffff66;
     font-size: 0.8em; }
-  .item:hover {
-    transform: translate(0, -1%); }
+  .item:hover .item-tile img {
+    filter: grayscale(100%);
+    transform: scale(1.1); }
   @media screen and (min-width: 700px) {
     .item {
       margin: 0 4% 3.5% 0;
@@ -734,7 +745,7 @@ body {
       margin-bottom: 0; } }
   @media screen and (min-width: 1000px) {
     .item {
-      margin: 0 2vw 1vw 0; }
+      margin: 0 2vw 2vw 0; }
       .item-tile {
         border-radius: 6px; }
       .item.small {
@@ -745,8 +756,7 @@ body {
         .item.small:nth-child(6n+1):nth-last-child(-n+6), .item.small:nth-child(6n+1):nth-last-child(-n+6) ~ * {
           margin-bottom: 0; }
       .item.big {
-        width: 21vw;
-        height: 21vw; }
+        width: 21vw; }
         .item.big:nth-child(3n) {
           margin-right: 0; }
         .item.big:nth-child(3n+1):nth-last-child(-n+3), .item.big:nth-child(3n+1):nth-last-child(-n+3) ~ * {

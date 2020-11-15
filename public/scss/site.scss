@@ -189,7 +189,6 @@ body{
 	cursor: pointer;	
 	&.small{
 		width: 30%;
-		height: 3.8em;
 	}
 	&.big{
 		width: 47.5%;
@@ -204,6 +203,8 @@ body{
 			width: 100%;
 			display: block;
 			height: auto;
+			filter: none;
+			transition: all 0.15s ease-in-out;
 		}
 	}
 	&-form{
@@ -233,7 +234,11 @@ body{
 		font-size: 0.8em;
 	}
 	&:hover{
-		transform: translate(0,-1%);
+		//transform: translate(0,-1%);
+		.item-tile img{
+			filter: grayscale(100%);
+			transform: scale(1.1);
+		}
 	}
 	@media screen and (min-width: 700px) {
 		&.small{
@@ -258,7 +263,7 @@ body{
 		}
 	}
 	@media screen and (min-width: 1000px) {
-		margin: 0 2vw 1vw 0;
+		margin: 0 2vw 2vw 0;
 		&-tile{
 			border-radius: 0.75*$std-padding;
 		}
@@ -274,7 +279,6 @@ body{
 		}
 		&.big{
 			width: 21vw;
-			height: 21vw;
 			&:nth-child(3n){
 				margin-right: 0;
 			}

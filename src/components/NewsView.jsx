@@ -30,7 +30,7 @@ class NewsView extends Component {
 }
 
 NewsView.defaultProps = {
-	title : 'Latest News'
+	title : 'Headlines'
 }
  
 export default NewsView;

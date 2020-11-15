@@ -8,7 +8,7 @@ import axios from 'axios';
 const KEY = '829c4e68-c5a7-43fa-8a81-ed2e567dc96a'
 
 class App extends Component {
-    state = { articles:[], selectedItem: null }
+    state = { articles:[], title:'Headlines', selectedItem: null }
 
     componentDidMount(){
         this.getNews();
@@ -25,14 +25,27 @@ class App extends Component {
             }
         });
         this.setState({articles:response.data.response.results});
-        console.log(response.data.response.results[0].fields.thumbnail);
+        // this.getSections();
     }
 
-    showItem = (item) => {
+    showSection = async (e) => {
+        const response = await axios.create({
+            baseURL: 'https://content.guardianapis.com',
+        }).get('/'+e.currentTarget.value,{
+            params:{
+                "api-key": KEY,
+                "page-size":30,
+                "show-fields": "body,thumbnail,wordcount",
+            }
+        });
+        this.setState({articles:response.data.response.results, title:response.data.response.section.webTitle});
+    }
+
+    showArticle = (item) => {
         this.setState({selectedItem:item});
     }
 
-    clearItem = () => {
+    clearArticle = () => {
         this.setState({selectedItem:null});
     }
 
@@ -42,13 +55,50 @@ class App extends Component {
                 <header className="header">
                     <span className="header-title">Acronym</span>
                     <Notification  />
-                    <span className="header-user">Neeraj Nathany</span>
+                    <span className="header-user">{new Date().toDateString()}</span>
                 </header>  
                 <main className="main">
                     <aside className="panel">
+                        <div className="panel-box">
+                            <div className="panel-box-group">
+                                <h6 className="panel-box-title">Categories</h6>
+                                <button className="panel-button" onClick={this.showSection} value={'business'} data-filter="section">
+                                    <span>Business</span>
+                                </button>
+                                <button className="panel-button" onClick={this.showSection} value={'technology'} data-filter="section">
+                                    <span>Technology</span>
+                                </button>
+                                <button className="panel-button" onClick={this.showSection} value={'politics'} data-filter="section">
+                                    <span>Politics</span>
+                                </button>
+                                <button className="panel-button" onClick={this.showSection} value={'sport'} data-filter="section">
+                                    <span>Sport</span>
+                                </button>                                
+                                
+                            </div>
+                            {/* {cats.map((each,num) => {
+                                return (
+                                    <div className="panel-box-group" key={num}><h6 className="panel-box-title">{each}</h6>
+                                    {this.state.clothes.filter(i=>{
+                                        return i.category === each;
+                                    }).map(c=>{
+                                        return c.form
+                                    }).filter((f, index, self)=>{
+                                        return self.indexOf(f) === index;
+                                    }).map((u,order) => {
+                                        return (
+                                            <button className={"panel-button "+ (this.state.formFilter === u)} key={order} onClick={this.onStdFilter} value={u} data-filter="form">
+                                                <span>{u}</span>
+                                            </button>
+                                        )
+                                    })}</div>
+                                )
+                            })
+                            } */}
+                        </div>
                     </aside>
-                    <NewsView showItem={this.showItem} articles={this.state.articles}/>    
-                    {this.state.selectedItem ? <ItemView item={this.state.selectedItem} clearItem={this.clearItem}/> : <ItemView class="inactive"/>}                                  
+                    <NewsView showItem={this.showArticle} articles={this.state.articles} title={this.state.title}/>    
+                    {this.state.selectedItem ? <ItemView item={this.state.selectedItem} clearItem={this.clearArticle}/> : <ItemView class="inactive"/>}                                  
                 </main>
             </div>
          )
