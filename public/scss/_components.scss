@@ -1,11 +1,12 @@
 .empty{
 	text-align: center;
-	padding: 15vh 0;
+	padding: 25vh 0;
 	&-icon{
-		fill: $grey;
+        fill: $grey;
+        margin-bottom: 1.5*$std-padding;
 	}
 	&-text{
-		line-height: 1.6em;
+		line-height: 1.5em;
 		color: $lighter-white;
 	}
 }
@@ -150,6 +151,11 @@
             }
         }
     }
+    &-end{
+        color: $red;
+        text-align: center;
+        margin-top: 4%;
+    }
     @media screen and (min-width: 700px) {
         &-modal{
             border-radius: 1.5*$std-padding;
@@ -172,8 +178,8 @@
     }
     &-meta{
         @extend .pop-meta;
-        color: $light-white;
-        margin-bottom: 4%;
+        color: $lighter-white;
+        margin-bottom: 5%;
     }
     &-detail{
         @extend .pop-detail;

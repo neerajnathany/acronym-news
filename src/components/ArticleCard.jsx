@@ -13,7 +13,7 @@ class ArticleCard extends Component {
 					<span className="item-section">{article.sectionName}</span>
 				</div>
 				<div className="item-detail">
-					<h5 className="item-title">{article.webTitle}</h5>
+					<h5 className="item-title">{article.fields.headline}</h5>
                     <span className="item-date">{date.charAt(0).toUpperCase() + date.slice(1)}</span>
                     {this.props.type === 'large' ? 
                         <div>

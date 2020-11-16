@@ -5,6 +5,7 @@ import ArticleModal from './components/ArticleModal';
 import ArticleView from './components/ArticleView';
 import SearchBar from './components/SearchBar';
 import Link from './components/Link';
+import Empty from './components/Empty';
 import {categories,KEY,PARAMS} from './constants';
 import axios from 'axios';
 import moment from 'moment';
@@ -22,6 +23,10 @@ class App extends Component {
         return () => {
             window.removeEventListener('popstate', onLocationChange);
         };
+    }
+
+    componentDidUpdate(){
+        //this.getNews();
     }
 
     getSections = async (query, search) => {
@@ -55,7 +60,7 @@ class App extends Component {
             params:parameters
         });
         if (response.data.response.results){
-            this.setState({articles: response.data.response.results, title: response.data.response.section ? response.data.response.section.webTitle : (this.state.query ? 'Search results':'Headlines'), article:{}});            
+        this.setState({articles: response.data.response.results, title: response.data.response.section ? response.data.response.section.webTitle : (this.state.query ? 'Search results':'Headlines'), article:{}});            
         }
         else if (response.data.response.content){
             this.setState({article:response.data.response.content, articles:[], title: ''});
@@ -66,17 +71,18 @@ class App extends Component {
         if (this.state.articles.length){
             return (
                 <NewsView key={this.state.title} sections={this.state.searchSections} showItem={this.showArticle} articles={this.state.articles} title={this.state.title}/>
-            )
-                
+            )                
         }
         else if (Object.keys(this.state.article).length){
             return <ArticleView article={this.state.article}/>
-        }                    
+        }  
+        else {
+            return <Empty/>
+        }                  
     }
 
     showArticle = item => {this.setState({popItem:item});}
     clearArticle = () => {this.setState({popItem:null});}
-    
 
     render() { 
         return (
@@ -88,12 +94,14 @@ class App extends Component {
                 </header>
                 <main className="main">
                     <aside className="panel">
-                        <SearchBar term={this.state.query}/>                            
+                        <SearchBar term={this.state.query}/>
+                        <div className="panel-head">
+                            <h4 className="panel-title">Categories</h4>
+                        </div>
                         <div className="panel-box">
                             <div className="panel-box-group">
-                                <h6 className="panel-box-title">Categories</h6>
                                     <Link className={"panel-button "+ (this.state.location === '/' ? "true" : '')} href="/">
-                                        <span>All headlines</span>
+                                        <span>All Headlines</span>
                                     </Link>
                                 {this.state.sections.map(each => {
                                     return (
@@ -105,7 +113,9 @@ class App extends Component {
                             </div>
                         </div>
                     </aside>
-                    {this.getView()}
+                    <div className="main-content">
+                        {this.getView()}
+                    </div>
                     {this.state.popItem ? <ArticleModal article={this.state.popItem} clearItem={this.clearArticle}/> : <ArticleModal class="inactive"/>}
                 </main>
             </div>

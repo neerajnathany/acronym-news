@@ -7,7 +7,7 @@ class NewsView extends Component {
 
     render() { 
         return ( 
-            <div className="main-content">
+            <div>
                 <div className="main-head">
                     <h2 className="main-title"><span>{this.props.title}</span></h2>
                     <span className="main-extra">{this.props.articles.length} result(s)</span>
