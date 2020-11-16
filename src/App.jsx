@@ -3,90 +3,101 @@ import Notification from './components/Notification';
 import NewsView from './components/NewsView';
 import ArticleModal from './components/ArticleModal';
 import ArticleView from './components/ArticleView';
+import SearchBar from './components/SearchBar';
 import Link from './components/Link';
 import {categories,KEY,PARAMS} from './constants';
 import axios from 'axios';
+import moment from 'moment';
 
 class App extends Component {
-    state = { popItem: null, sections: [], articles: [], article: {}, title: '', location: window.location.pathname }
+    state = { popItem: null, sections: [], articles: [], searchSections: [], article: {}, title: '', location: window.location.pathname, query: new URL(window.location.href).searchParams.get('q')}
 
     componentDidMount(){
-        this.getSections();
         const onLocationChange = () => {
-            this.setState({location: window.location.pathname});
+            this.setState({location: window.location.pathname, query: new URL(window.location.href).searchParams.get('q')});
         };
         window.addEventListener('popstate', onLocationChange);
+        this.getSections(categories, false);  
+        this.getNews();
         return () => {
             window.removeEventListener('popstate', onLocationChange);
         };
     }
 
-    getSections = async () => {
+    getSections = async (query, search) => {
         const response = await axios.create({
             baseURL: 'https://content.guardianapis.com',
         }).get('/sections', {
             params:{
                 'api-key':KEY,
-                'q':categories
+                'q':query
             }
         });
-        this.setState({sections: response.data.response.results.filter(e => {
+        search ? this.setState({searchSections: response.data.response.results}) : this.setState({sections: response.data.response.results.filter(e => {
             return categories.includes(e.id);
         })});
     }
     
-    getNews = async () => {
-        var path = this.state.location === '/' ? '/search' : this.state.location;
+    getNews = async () => {        
+        var path = this.state.location, parameters = PARAMS;
+        //this.setState({searchSections:[]});
+
+        if (this.state.location === '/'){
+            path = '/search';
+        }
+        else if (this.state.location === '/search' && this.state.query){
+            parameters = {...PARAMS,'q':this.state.query};
+            this.getSections(this.state.query,true);
+        }
         const response = await axios.create({
             baseURL: 'https://content.guardianapis.com',
         }).get(path, {
-            params:PARAMS
+            params:parameters
         });
         if (response.data.response.results){
-            this.setState({articles: response.data.response.results, title: response.data.response.section ? response.data.response.section.webTitle : 'Headlines', article:{}});            
+            this.setState({articles: response.data.response.results, title: response.data.response.section ? response.data.response.section.webTitle : (this.state.query ? 'Search results':'Headlines'), article:{}});            
         }
         else if (response.data.response.content){
             this.setState({article:response.data.response.content, articles:[], title: ''});
         }
     }
     
-    showArticle = (item) => {
-        this.setState({popItem:item});
-    }
-    
-    clearArticle = () => {
-        this.setState({popItem:null});
-    }
-    
     getView = () => {        
-        this.getNews();
         if (this.state.articles.length){
-            return <NewsView key={this.state.title} showItem={this.showArticle} articles={this.state.articles} title={this.state.title}/>                                 
+            return (
+                <NewsView key={this.state.title} sections={this.state.searchSections} showItem={this.showArticle} articles={this.state.articles} title={this.state.title}/>
+            )
+                
         }
         else if (Object.keys(this.state.article).length){
             return <ArticleView article={this.state.article}/>
         }                    
     }
 
+    showArticle = item => {this.setState({popItem:item});}
+    clearArticle = () => {this.setState({popItem:null});}
+    
+
     render() { 
         return (
             <div>
                 <header className="header">
-                    <span className="header-title">Acronym</span>
+                    <a href="/" className="header-title">Acronym</a>
                     <Notification  />
-                    <span className="header-user">{new Date().toDateString()}</span>
+                    <span className="header-user">{moment().format("ddd, MMM Do YYYY")}</span>
                 </header>
                 <main className="main">
                     <aside className="panel">
+                        <SearchBar term={this.state.query}/>                            
                         <div className="panel-box">
                             <div className="panel-box-group">
                                 <h6 className="panel-box-title">Categories</h6>
-                                <Link className={"panel-button "+(this.state.location === '/' ? "true" : "false")} href="/">
-                                    <span>All headlines</span>
-                                </Link>
+                                    <Link className={"panel-button "+ (this.state.location === '/' ? "true" : '')} href="/">
+                                        <span>All headlines</span>
+                                    </Link>
                                 {this.state.sections.map(each => {
                                     return (
-                                        <Link className={"panel-button "+(this.state.location === '/'+each.id ? "true" : "false")} href={"/"+each.id}>
+                                        <Link className={"panel-button "+(this.state.location === '/'+ each.id ? "true" : '')} href={"/"+ each.id}>
                                             <span>{each.webTitle}</span>
                                         </Link>
                                     )

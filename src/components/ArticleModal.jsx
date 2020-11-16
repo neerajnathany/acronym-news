@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Link from './Link';
+import moment from 'moment';
 
 class ArticleModal extends Component {
     render() {
@@ -8,13 +9,14 @@ class ArticleModal extends Component {
             article ?
             <div className={"pop-layer " + this.props.class} onClick={this.props.clearItem}>
                 <div className="pop-modal">
-                    <Link href={"/"+article.sectionId} className="pop-item-section">{article.sectionName}</Link>
-                    <h1 className="pop-item-title">{article.webTitle}</h1>
-                    <div className="pop-item-meta">                        
-                        <span>{article.webPublicationDate}</span>•
+                    <Link href={"/"+article.sectionId} className="pop-section">{article.sectionName}</Link>
+                    <h1 className="pop-title">{article.webTitle}</h1>
+                    <div className="pop-meta">                        
+                        <span>{moment(article.webPublicationDate).fromNow()}</span>•
+                        <span>By {article.fields.byline}</span>•
                         <span>{Math.round((article.fields.wordcount / 10)*0.0769)} mins</span>
                     </div>
-                    <div className="pop-item-detail" dangerouslySetInnerHTML={{__html: article.fields.body}} />
+                    <div className="pop-detail" dangerouslySetInnerHTML={{__html: article.fields.body}} />
                 </div>
             </div> : null
         )

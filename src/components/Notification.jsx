@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 
 const KEY = 'c9ae2c13187279ee786d6369b8618cb7';
-const CITY = 'Mumbai';
+const CITY = 'Amsterdam';
 
 class Notification extends Component {
 	state = { temp: '25', desc: 'wind'};
@@ -29,7 +29,7 @@ class Notification extends Component {
 		return ( 
 			<div className="header-notif">
 				<img className="header-notif-icon" src={this.iconUrl + this.state.icon + ".png"} alt={this.state.desc}/>
-				<span className="header-notif-text">Prediction of <b>{Math.round(this.state.temp)}°C</b> with <b>{this.state.desc}</b> in {CITY}.</span>
+				<span className="header-notif-text">Prediction of <b>{Math.round(this.state.temp)}°C</b> with <b>{this.state.desc}</b> in {CITY}</span>
 			</div>
 		 );
 	}

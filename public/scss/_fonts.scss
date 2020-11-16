@@ -13,18 +13,6 @@
 
 @font-face {
     font-family: 'Circular Std';
-    src: url('../fonts/CircularStd-Medium.eot');
-    src: local('Circular Std Medium'), local('CircularStd-Medium'),
-        url('../fonts/CircularStd-Medium.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/CircularStd-Medium.woff2') format('woff2'),
-        url('../fonts/CircularStd-Medium.woff') format('woff'),
-        url('../fonts/CircularStd-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Circular Std';
     src: url('../fonts/CircularStd-Bold.eot');
     src: local('Circular Std Bold'), local('CircularStd-Bold'),
         url('../fonts/CircularStd-Bold.eot?#iefix') format('embedded-opentype'),
@@ -32,6 +20,18 @@
         url('../fonts/CircularStd-Bold.woff') format('woff'),
         url('../fonts/CircularStd-Bold.ttf') format('truetype');
     font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Circular Std';
+    src: url('../fonts/CircularStd-Medium.eot');
+    src: local('Circular Std Medium'), local('CircularStd-Medium'),
+        url('../fonts/CircularStd-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/CircularStd-Medium.woff2') format('woff2'),
+        url('../fonts/CircularStd-Medium.woff') format('woff'),
+        url('../fonts/CircularStd-Medium.ttf') format('truetype');
+    font-weight: 500;
     font-style: normal;
 }
 
