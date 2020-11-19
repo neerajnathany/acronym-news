@@ -26,14 +26,14 @@ class NewsView extends Component {
             }
             {this.props.articles.length ? 
                 <div className="articles">
-                    <ArticleCard type='large' article={this.props.articles[0]} showItem = {this.props.showItem} />
+                    <ArticleCard type='large' article={this.props.articles[0]} showArticle = {this.props.showArticle} />
                     <div>{(this.props.articles.slice(1).map( (each, index) => {
                         return (
                             <ArticleCard
                                 type="big"
                                 article={each}
                                 key={index}
-                                showItem = {this.props.showItem}
+                                showArticle = {this.props.showArticle}
                             />
                         )
                     }))} </div>    

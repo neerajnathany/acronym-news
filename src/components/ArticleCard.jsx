@@ -7,7 +7,7 @@ class ArticleCard extends Component {
         var article = this.props.article;
         var date = moment(article.webPublicationDate).fromNow();
 		return (
-			<div className={"item "+this.props.type} onClick = {() => this.props.showItem(article)}>
+			<div className={"item "+this.props.type} onClick = {() => this.props.showArticle(article)}>
 				<div className="item-tile">
 					{article.fields.thumbnail ? <img src={article.fields.thumbnail} alt={article.webTitle}></img> : null}
 					<span className="item-section">{article.sectionName}</span>
@@ -18,7 +18,7 @@ class ArticleCard extends Component {
                     {this.props.type === 'large' ? 
                         <div>
                             <span className="item-author">By {article.fields.byline}</span>
-                            <p className="item-intro">{article.fields.trailText}.</p>
+                            <div className="item-intro" dangerouslySetInnerHTML={{__html: article.fields.trailText + '.'}} />
                         </div>
                      : null}
 				</div>

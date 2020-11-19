@@ -62,14 +62,17 @@
         transition: all 0.08s ease-in-out;
     }
     &-modal{
+        position: fixed;
         background-color: $faint-white;
         color: $dark;
         width: 50%;
-        margin: 3% auto;
+        top: 5%;
+        left: 25%;
         max-height: 90%;
         overflow: scroll;
         border-radius: 1.25*$std-padding;
         padding: 2.5% 3%;
+        z-index: 3;
     }
     &-section{
         @extend %box-tag;

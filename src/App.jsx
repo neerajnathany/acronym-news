@@ -70,7 +70,7 @@ class App extends Component {
     getView = () => {        
         if (this.state.articles.length){
             return (
-                <NewsView key={this.state.title} sections={this.state.searchSections} showItem={this.showArticle} articles={this.state.articles} title={this.state.title}/>
+                <NewsView key={this.state.title} sections={this.state.searchSections} showArticle={this.showArticle} articles={this.state.articles} title={this.state.title}/>
             )                
         }
         else if (Object.keys(this.state.article).length){
@@ -116,7 +116,11 @@ class App extends Component {
                     <div className="main-content">
                         {this.getView()}
                     </div>
-                    {this.state.popItem ? <ArticleModal article={this.state.popItem} clearItem={this.clearArticle}/> : <ArticleModal class="inactive"/>}
+                    {this.state.popItem ? 
+                        <div>
+                            <div className="pop-layer" onClick={this.clearArticle}></div>
+                            <ArticleModal article={this.state.popItem} />
+                        </div> : null}
                 </main>
             </div>
          )

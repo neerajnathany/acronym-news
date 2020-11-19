@@ -476,14 +476,17 @@ textarea {
   transition: all 0.08s ease-in-out; }
 
 .pop-modal {
+  position: fixed;
   background-color: #ddd;
   color: #1f1f1f;
   width: 50%;
-  margin: 3% auto;
+  top: 5%;
+  left: 25%;
   max-height: 90%;
   overflow: scroll;
   border-radius: 10px;
-  padding: 2.5% 3%; }
+  padding: 2.5% 3%;
+  z-index: 3; }
 
 .pop-section, .article-section {
   font-size: 0.9em;
