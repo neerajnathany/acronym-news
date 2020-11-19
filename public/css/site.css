@@ -558,6 +558,17 @@ textarea {
   text-align: center;
   margin-top: 4%; }
 
+.pop-close {
+  position: fixed;
+  top: calc(5% - 2*8px);
+  right: calc(25% - 2*8px);
+  background-color: #383838;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  border: none;
+  z-index: 4; }
+
 @media screen and (min-width: 700px) {
   .pop-modal {
     border-radius: 12px; } }
@@ -747,11 +758,12 @@ body {
     background-color: #000;
     margin-bottom: 4.25%;
     border-radius: 10px;
-    padding: 12px 22px 22px; }
+    padding: 20px 22px 22px; }
     .panel-box-group:not(:last-child) {
       margin-bottom: 16px; }
     .panel-box-title {
-      font-size: 0.75em; }
+      font-size: 0.9em;
+      margin-bottom: 1%; }
   .panel-search {
     margin-bottom: 7%; }
   .panel-input {

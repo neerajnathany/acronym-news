@@ -95,10 +95,8 @@ class App extends Component {
                 <main className="main">
                     <aside className="panel">
                         <SearchBar term={this.state.query}/>
-                        <div className="panel-head">
-                            <h4 className="panel-title">Categories</h4>
-                        </div>
                         <div className="panel-box">
+                            <h4 className="panel-box-title">Categories</h4>
                             <div className="panel-box-group">
                                     <Link className={"panel-button "+ (this.state.location === '/' ? "true" : '')} href="/">
                                         <span>All Headlines</span>
@@ -112,6 +110,21 @@ class App extends Component {
                                 })}                                                                                 
                             </div>
                         </div>
+                        {/* <div className="panel-box-group">
+                            <div className="tradingview-widget-container">
+                            <div className="tradingview-widget-container__widget"></div>
+                            <div className="tradingview-widget-copyright"><a href="https://in.tradingview.com/symbols/BSE-SENSEX/" rel="noopener"><span className="blue-text">SENSEX Quotes</span></a></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                            {{
+                            "symbol": "BSE:SENSEX",
+                            "width": "100%",
+                            "colorTheme": "dark",
+                            "isTransparent": true,
+                            "locale": "in"
+                            }}
+                            </script>
+                            </div>
+                        </div> */}
                     </aside>
                     <div className="main-content">
                         {this.getView()}
@@ -119,7 +132,7 @@ class App extends Component {
                     {this.state.popItem ? 
                         <div>
                             <div className="pop-layer" onClick={this.clearArticle}></div>
-                            <ArticleModal article={this.state.popItem} />
+                            <ArticleModal article={this.state.popItem} clearArticle={this.clearArticle}/>
                         </div> : null}
                 </main>
             </div>

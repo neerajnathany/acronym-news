@@ -159,6 +159,17 @@
         text-align: center;
         margin-top: 4%;
     }
+    &-close{
+        position: fixed;
+        top: calc(5% - 2*#{$std-padding});
+        right: calc(25% - 2*#{$std-padding});
+        background-color: $grey;
+        width: 4*$std-padding;
+        height: 4*$std-padding;
+        border-radius: 100%;
+        border: none;
+        z-index: 4;
+    }
     @media screen and (min-width: 700px) {
         &-modal{
             border-radius: 1.5*$std-padding;

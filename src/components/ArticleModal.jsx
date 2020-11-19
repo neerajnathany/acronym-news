@@ -16,6 +16,7 @@ class ArticleModal extends Component {
                 </div>
                 <div className="pop-detail" dangerouslySetInnerHTML={{__html: article.fields.body}} />
                 <h6 className="pop-end">_____</h6>
+                <button className="pop-close" onClick={this.props.clearArticle}></button>
             </div>
         )
     }
