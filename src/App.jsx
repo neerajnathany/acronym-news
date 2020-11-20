@@ -5,6 +5,7 @@ import ArticleModal from './components/ArticleModal';
 import ArticleView from './components/ArticleView';
 import SearchBar from './components/SearchBar';
 import Link from './components/Link';
+import FinWidget from './components/FinWidget';
 import Empty from './components/Empty';
 import {categories,KEY,PARAMS} from './constants';
 import axios from 'axios';
@@ -96,7 +97,7 @@ class App extends Component {
                     <aside className="panel">
                         <SearchBar term={this.state.query}/>
                         <div className="panel-box">
-                            <h4 className="panel-box-title">Categories</h4>
+                            <h4 className="panel-box-title">Popular Categories</h4>
                             <div className="panel-box-group">
                                     <Link className={"panel-button "+ (this.state.location === '/' ? "true" : '')} href="/">
                                         <span>All Headlines</span>
@@ -110,21 +111,7 @@ class App extends Component {
                                 })}                                                                                 
                             </div>
                         </div>
-                        {/* <div className="panel-box-group">
-                            <div className="tradingview-widget-container">
-                            <div className="tradingview-widget-container__widget"></div>
-                            <div className="tradingview-widget-copyright"><a href="https://in.tradingview.com/symbols/BSE-SENSEX/" rel="noopener"><span className="blue-text">SENSEX Quotes</span></a></div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            {{
-                            "symbol": "BSE:SENSEX",
-                            "width": "100%",
-                            "colorTheme": "dark",
-                            "isTransparent": true,
-                            "locale": "in"
-                            }}
-                            </script>
-                            </div>
-                        </div> */}
+                        <FinWidget />
                     </aside>
                     <div className="main-content">
                         {this.getView()}

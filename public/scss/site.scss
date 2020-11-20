@@ -153,7 +153,7 @@ body{
 		}
 	}
 	&-search{
-		margin-bottom: 7%;
+		margin-bottom: 4.25%;
 	}
 	&-input{
 		width: 100%;
@@ -171,6 +171,20 @@ body{
 	&-extra{
 		@extend %text-button;
 		font-size: 0.7em;
+	}
+	&-widget{
+		height: 160px;
+		background-color: $black;
+		margin-bottom: 4.25%;
+		border-radius: 1.25*$std-padding;
+		padding-top: 0.5*$std-padding;
+		iframe{
+			border-radius: 1.25*$std-padding;
+			overflow: hidden;
+			*{
+				cursor: default;
+			}
+		}
 	}
 	@media screen and (min-width: 700px) {
 		display: inline-block;
