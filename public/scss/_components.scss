@@ -80,6 +80,7 @@
         position: static;
         display: inline-block;
         margin-bottom: 1.5%;
+        margin-right: $std-padding;
         background-color: $red;
         color: $faint-white;
         text-decoration: none;
@@ -178,7 +179,7 @@
     }
     &-share{
         font-size: 0.9em;
-        padding: $std-padding*0.3 $std-padding*0.65;
+        padding: $std-padding*0.32 $std-padding*0.65;
         border-radius: 0.6*$std-padding;
         font-family: inherit;
         border: 1px solid $cobalt;
@@ -186,7 +187,6 @@
         background-color: transparent;
         color: $cobalt;
         line-height: 1;
-        margin-left: $std-padding;
         font-weight: 300;
         box-sizing: inherit;
         &:hover{
@@ -203,7 +203,9 @@
 
 .article{
     &-view{
-        width: 70%;
+        width: 44vw;
+        margin-right: 2vw;
+        display: inline-block;
     }
     &-section{
         @extend .pop-section;
@@ -221,6 +223,9 @@
     }
     &-detail{
         @extend .pop-detail;
+        a{
+            color: lighten($cobalt,5%);
+        }
     }
     &-end{
         @extend .pop-end;
@@ -232,6 +237,22 @@
         border-color: $light-white;
         &:hover{
             border-color: $cobalt;
+        }
+    }
+    &-related{
+        height: 100px;
+        display: inline-block;
+        vertical-align: top;
+        width: 21vw;
+        position: sticky;
+        top: 2.75vw;
+        &-title{
+            @extend .panel-box-title;
+            color: $white;
+        }
+        &-section{
+            text-decoration: none;
+            color: lighten($cobalt,5%);
         }
     }
 }

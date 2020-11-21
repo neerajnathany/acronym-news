@@ -26,10 +26,6 @@ class App extends Component {
         };
     }
 
-    componentDidUpdate(){
-        //this.getNews();
-    }
-
     getSections = async (query, search) => {
         const response = await axios.create({
             baseURL: 'https://content.guardianapis.com',
@@ -75,7 +71,7 @@ class App extends Component {
             )                
         }
         else if (Object.keys(this.state.article).length){
-            return <ArticleView article={this.state.article} copyLink={this.copyLink}/>
+            return <ArticleView article={this.state.article} copyLink={this.copyLink} showArticle={this.showArticle}/>
         }  
         else {
             return <Empty/>
@@ -84,7 +80,7 @@ class App extends Component {
 
     showArticle = item => {this.setState({popItem:item});}
     clearArticle = () => {this.setState({popItem:null});}
-    copyLink = path => {navigator.clipboard.writeText('https://acronym.vercel.app/'+path);}
+    copyLink = path => {navigator.clipboard.writeText(window.location.origin+'/'+path);}
 
     render() { 
         return (

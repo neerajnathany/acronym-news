@@ -493,6 +493,7 @@ textarea {
   position: static;
   display: inline-block;
   margin-bottom: 1.5%;
+  margin-right: 8px;
   background-color: #a20000;
   color: #ddd;
   text-decoration: none; }
@@ -577,7 +578,7 @@ textarea {
 
 .pop-share, .article-share {
   font-size: 0.9em;
-  padding: 2.4px 5.2px;
+  padding: 2.56px 5.2px;
   border-radius: 4.8px;
   font-family: inherit;
   border: 1px solid #2190ff;
@@ -585,7 +586,6 @@ textarea {
   background-color: transparent;
   color: #2190ff;
   line-height: 1;
-  margin-left: 8px;
   font-weight: 300;
   box-sizing: inherit; }
   .pop-share:hover, .article-share:hover {
@@ -597,7 +597,9 @@ textarea {
     border-radius: 12px; } }
 
 .article-view {
-  width: 70%; }
+  width: 44vw;
+  margin-right: 2vw;
+  display: inline-block; }
 
 .article-section {
   margin-bottom: 1.3%; }
@@ -610,6 +612,9 @@ textarea {
   color: #ffffff77;
   margin-bottom: 5%; }
 
+.article-detail a {
+  color: #3b9dff; }
+
 .article-end {
   color: #ffffff77; }
 
@@ -618,6 +623,19 @@ textarea {
   border-color: #ffffffbb; }
   .article-share:hover {
     border-color: #2190ff; }
+
+.article-related {
+  height: 100px;
+  display: inline-block;
+  vertical-align: top;
+  width: 21vw;
+  position: sticky;
+  top: 2.75vw; }
+  .article-related-title {
+    color: #fff; }
+  .article-related-section {
+    text-decoration: none;
+    color: #3b9dff; }
 
 .sections {
   margin-bottom: 2vw; }
@@ -740,7 +758,7 @@ body {
     color: #ffffff77; }
   @media screen and (min-width: 700px) {
     .main {
-      padding: 2.75% 0; }
+      padding: 2.75% 0 4%; }
       .main-head {
         margin-bottom: 3.5%; }
       .main-content {
@@ -793,7 +811,7 @@ body {
     padding: 20px 22px 22px; }
     .panel-box-group:not(:last-child) {
       margin-bottom: 16px; }
-    .panel-box-title {
+    .panel-box-title, .article-related-title {
       font-size: 0.9em;
       margin-bottom: 1%; }
   .panel-search {
@@ -832,7 +850,7 @@ body {
       vertical-align: top;
       margin: 0 2.75%;
       position: sticky;
-      top: 48px; }
+      top: 2.75vw; }
       .panel-button {
         margin-right: 10px;
         margin-top: 10px; } }
@@ -865,12 +883,32 @@ body {
   transition: transform 0.1s ease-in-out;
   position: relative;
   overflow: hidden;
-  margin: 5% 0;
   cursor: pointer; }
   .item.small {
-    width: 30%; }
+    margin: 1.2vw 0 0; }
+    .item.small .item-tile {
+      width: 20%;
+      display: inline-block;
+      margin-top: 3.2px; }
+    .item.small .item-section {
+      display: none; }
+    .item.small .item-detail {
+      width: 80%;
+      padding-left: 1vw;
+      display: inline-block;
+      vertical-align: top; }
+    .item.small .item-title {
+      font-size: 0.9em;
+      color: #ddd; }
+    .item.small .item-date, .item.small .item-author {
+      font-size: 0.7em; }
   .item.big {
-    width: 47.5%; }
+    width: 47.5%;
+    margin: 5% 0; }
+    .item.big .item-detail {
+      padding: 5% 0 0; }
+  .item.large .item-detail {
+    padding: 5% 0 0; }
   .item-tile {
     width: 100%;
     position: relative;
@@ -891,8 +929,6 @@ body {
     right: 4.8px;
     z-index: 1;
     background-color: #a20000; }
-  .item-detail {
-    padding: 5% 0 0; }
   .item-title {
     font-size: 1.1em;
     line-height: 1.25em;
@@ -910,17 +946,9 @@ body {
   @media screen and (min-width: 700px) {
     .item {
       border-radius: 4px; }
-      .item.small {
-        width: 30.66%;
-        height: 5.3em; }
       .item.big {
         margin: 0 4% 3.5% 0;
         width: 48%; } }
-  @media screen and (min-width: 1000px) {
-    .item.small:nth-child(3n) {
-      margin-right: 0; }
-    .item.small:nth-child(3n+1):nth-last-child(-n+3), .item.small:nth-child(3n+1):nth-last-child(-n+3) ~ * {
-      margin-bottom: 0; } }
   @media screen and (min-width: 1000px) {
     .item-tile {
       border-radius: 6px; }
@@ -928,6 +956,8 @@ body {
       margin-top: 3%;
       font-size: 1em;
       line-height: 1.4em; }
+    .item.small .item-tile {
+      border-radius: 4px; }
     .item.big {
       margin: 0 2vw 2.5vw 0;
       width: 21vw; }

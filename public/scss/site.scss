@@ -82,7 +82,7 @@ body{
 		color: $lighter-white;
 	}
 	@media screen and (min-width: 700px) {		
-		padding: 2.75% 0;
+		padding: 2.75% 0 4%;
 		&-head{
 			margin-bottom: 3.5%;
 		}
@@ -195,7 +195,7 @@ body{
 		vertical-align: top;
 		margin: 0 2.75%;
 		position: sticky;
-		top: 6*$std-padding;
+		top: 2.75vw;
 		&-button{
 			margin-right: 1.25*$std-padding;
 			margin-top: 1.25*$std-padding;
@@ -238,13 +238,42 @@ body{
 	transition: transform 0.1s ease-in-out;
 	position: relative;
 	overflow: hidden;
-	margin: 5% 0;
-	cursor: pointer;	
+	cursor: pointer;
 	&.small{
-		width: 30%;
-	}
+		margin: 1.2vw 0 0;		
+		.item-tile{
+			width: 20%;
+			display: inline-block;
+			margin-top: 0.4*$std-padding;	
+		}
+		.item-section{
+			display: none;
+		}
+		.item-detail{
+			width: 80%;
+			padding-left: 1vw;
+			display: inline-block;
+			vertical-align: top;
+		}
+		.item-title{
+			font-size: 0.9em;
+			color: $faint-white;
+		}
+		.item-date{
+			font-size: 0.7em;
+		}
+	}	
 	&.big{
 		width: 47.5%;
+		margin: 5% 0;
+		.item-detail{
+			padding: 5% 0 0;
+		}
+	}
+	&.large{
+		.item-detail{
+			padding: 5% 0 0;
+		}
 	}
 	&-tile{
 		width: 100%;
@@ -271,9 +300,6 @@ body{
 		z-index: 1;
 		background-color: $red;
 	}
-	&-detail{
-		padding: 5% 0 0;
-	}
 	&-title{
 		font-size: 1.1em;
 		line-height: 1.25em;
@@ -297,23 +323,9 @@ body{
 	}
 	@media screen and (min-width: 700px) {
 		border-radius: 0.5*$std-padding;
-		&.small{
-			width: 30.66%;
-			height: 5.3em;
-		}
 		&.big{
 			margin: 0 4% 3.5% 0;
 			width: 48%;
-		}
-	}
-	@media screen and (min-width: 1000px) {
-		&.small{
-			&:nth-child(3n){
-				margin-right: 0;
-			}
-			&:nth-child(3n+1):nth-last-child(-n+3),&:nth-child(3n+1):nth-last-child(-n+3)~*{
-				margin-bottom:0;
-			}
 		}
 	}
 	@media screen and (min-width: 1000px) {
@@ -324,6 +336,11 @@ body{
 			margin-top: 3%;
 			font-size: 1em;
 			line-height: 1.4em;
+		}
+		&.small{
+			.item-tile{
+				border-radius: 0.5*$std-padding;
+			}
 		}
 		&.big{
 			margin: 0 2vw 2.5vw 0;

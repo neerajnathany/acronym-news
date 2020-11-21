@@ -27,5 +27,9 @@ class ArticleCard extends Component {
 		)
 	}
 }
+
+ArticleCard.defaultProps = {
+	type : ''
+}
  
 export default ArticleCard;
