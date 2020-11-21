@@ -497,7 +497,7 @@ textarea {
   color: #ddd;
   text-decoration: none; }
   .pop-section:hover, .article-section:hover {
-    background-color: #0883ff; }
+    background-color: #890000; }
 
 .pop-title, .article-title {
   margin-bottom: 2%;
@@ -511,7 +511,12 @@ textarea {
   margin-bottom: 4.5%; }
   .pop-meta span, .article-meta span {
     display: inline-block;
-    margin-right: 1.5%; }
+    margin-right: 1.5%;
+    max-width: 45ch;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom; }
   .pop-meta span:not(:first-child), .article-meta span:not(:first-child) {
     margin-left: 1.5%; }
 
@@ -534,7 +539,7 @@ textarea {
       font-weight: initial; }
       .pop-detail blockquote em br, .article-detail blockquote em br {
         display: none; }
-  .pop-detail h2.block-title, .article-detail h2.block-title {
+  .pop-detail h2, .article-detail h2, .pop-detail h2.block-title, .article-detail h2.block-title {
     font-weight: 700;
     margin-bottom: 1%; }
   .pop-detail figure, .article-detail figure {
@@ -553,10 +558,11 @@ textarea {
       line-height: 1.25em;
       margin-top: 1%; }
 
-.pop-end {
+.pop-end, .article-end {
   color: #a20000;
   text-align: center;
-  margin-top: 4%; }
+  margin-top: 4%;
+  letter-spacing: -0.5px; }
 
 .pop-close {
   position: fixed;
@@ -568,6 +574,23 @@ textarea {
   border-radius: 100%;
   border: none;
   z-index: 4; }
+
+.pop-share, .article-share {
+  font-size: 0.9em;
+  padding: 2.4px 5.2px;
+  border-radius: 4.8px;
+  font-family: inherit;
+  border: 1px solid #2190ff;
+  text-decoration: none;
+  background-color: transparent;
+  color: #2190ff;
+  line-height: 1;
+  margin-left: 8px;
+  font-weight: 300;
+  box-sizing: inherit; }
+  .pop-share:hover, .article-share:hover {
+    background-color: #2190ff;
+    color: #ddd; }
 
 @media screen and (min-width: 700px) {
   .pop-modal {
@@ -586,6 +609,15 @@ textarea {
 .article-meta {
   color: #ffffff77;
   margin-bottom: 5%; }
+
+.article-end {
+  color: #ffffff77; }
+
+.article-share {
+  color: #ffffffbb;
+  border-color: #ffffffbb; }
+  .article-share:hover {
+    border-color: #2190ff; }
 
 .sections {
   margin-bottom: 2vw; }
@@ -791,6 +823,8 @@ body {
       overflow: hidden; }
       .panel-widget iframe * {
         cursor: default; }
+      .panel-widget iframe .tv-ticker-item-last__last {
+        font-size: 20px !important; }
   @media screen and (min-width: 700px) {
     .panel {
       display: inline-block;

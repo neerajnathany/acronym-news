@@ -184,6 +184,9 @@ body{
 			*{
 				cursor: default;
 			}
+			.tv-ticker-item-last__last{
+				font-size: 20px !important;
+			}
 		}
 	}
 	@media screen and (min-width: 700px) {

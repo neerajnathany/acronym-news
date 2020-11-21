@@ -7,6 +7,7 @@ class ArticleCard extends Component {
         var article = this.props.article;
         var date = moment(article.webPublicationDate).fromNow();
 		return (
+            article.fields.thumbnail ? 
 			<div className={"item "+this.props.type} onClick = {() => this.props.showArticle(article)}>
 				<div className="item-tile">
 					{article.fields.thumbnail ? <img src={article.fields.thumbnail} alt={article.webTitle}></img> : null}
@@ -22,7 +23,7 @@ class ArticleCard extends Component {
                         </div>
                      : null}
 				</div>
-			</div>
+			</div> : null
 		)
 	}
 }

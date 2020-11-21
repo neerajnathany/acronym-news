@@ -61,7 +61,7 @@ class App extends Component {
             params:parameters
         });
         if (response.data.response.results){
-        this.setState({articles: response.data.response.results, title: response.data.response.section ? response.data.response.section.webTitle : (this.state.query ? 'Search results':'Headlines'), article:{}});            
+            this.setState({articles: response.data.response.results, title: response.data.response.section ? response.data.response.section.webTitle : (this.state.query ? 'Search results':'Headlines'), article:{}});            
         }
         else if (response.data.response.content){
             this.setState({article:response.data.response.content, articles:[], title: ''});
@@ -71,11 +71,11 @@ class App extends Component {
     getView = () => {        
         if (this.state.articles.length){
             return (
-                <NewsView key={this.state.title} sections={this.state.searchSections} showArticle={this.showArticle} articles={this.state.articles} title={this.state.title}/>
+                <NewsView sections={this.state.searchSections} showArticle={this.showArticle} articles={this.state.articles} title={this.state.title}/>
             )                
         }
         else if (Object.keys(this.state.article).length){
-            return <ArticleView article={this.state.article}/>
+            return <ArticleView article={this.state.article} copyLink={this.copyLink}/>
         }  
         else {
             return <Empty/>
@@ -84,6 +84,7 @@ class App extends Component {
 
     showArticle = item => {this.setState({popItem:item});}
     clearArticle = () => {this.setState({popItem:null});}
+    copyLink = path => {navigator.clipboard.writeText('https://acronym.vercel.app/'+path);}
 
     render() { 
         return (
@@ -119,7 +120,7 @@ class App extends Component {
                     {this.state.popItem ? 
                         <div>
                             <div className="pop-layer" onClick={this.clearArticle}></div>
-                            <ArticleModal article={this.state.popItem} clearArticle={this.clearArticle}/>
+                            <ArticleModal article={this.state.popItem} clearArticle={this.clearArticle} copyLink={this.copyLink}/>
                         </div> : null}
                 </main>
             </div>
