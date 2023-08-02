@@ -313,6 +313,13 @@
             background-color: darken($cobalt,7.5%);
         }
     }
+    &-ps{
+        width: 60%;
+        margin: 2*$std-padding auto;
+        font-size: 0.8em;
+        line-height: 1.2em;
+        color: $lighter-white;
+    }
     @media screen and (min-width: 700px) {
         padding-top: 20vh;
         &-header{
@@ -322,6 +329,9 @@
         &-name{
             padding: 3*$std-padding 4*$std-padding 1.5*$std-padding;
             border-radius: 2.5*$std-padding;
+        }
+        &-ps{
+            width: 20%;
         }
     }
 }

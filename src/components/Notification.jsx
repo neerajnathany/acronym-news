@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 
 const KEY = 'c9ae2c13187279ee786d6369b8618cb7';
-const CITY = 'Berlin';
+const CITY = 'Mumbai';
 
 class Notification extends Component {
 	state = { temp: '25', desc: 'wind'};

@@ -26,6 +26,16 @@ class App extends Component {
         };
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        // Check if location or query has changed
+        if (
+            prevState.location !== this.state.location ||
+            prevState.query !== this.state.query
+        ) {
+            this.getNews(); // Fetch data when location or query changes
+        }
+    }
+
     getSections = async (query, search) => {
         const response = await axios.create({
             baseURL: 'https://content.guardianapis.com',
@@ -40,7 +50,8 @@ class App extends Component {
         })});
     }
     
-    getNews = async () => {        
+    getNews = async () => {     
+        this.setState({articles:[], article:{},searchSections:[]});
         var path = this.state.location, parameters = PARAMS;
         //this.setState({searchSections:[]});
 
@@ -58,13 +69,15 @@ class App extends Component {
         });
         if (response.data.response.results){
             this.setState({articles: response.data.response.results, title: response.data.response.section ? response.data.response.section.webTitle : (this.state.query ? 'Search results':'Headlines'), article:{}});            
+            console.log(response.data.response.results[0]);
         }
         else if (response.data.response.content){
             this.setState({article:response.data.response.content, articles:[], title: ''});
         }
     }
     
-    getView = () => {        
+    getView = () => {    
+        
         if (this.state.articles.length){
             return (
                 <NewsView sections={this.state.searchSections} showArticle={this.showArticle} articles={this.state.articles} title={this.state.title}/>
